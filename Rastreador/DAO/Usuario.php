@@ -19,8 +19,9 @@ class Usuario {
      * 
      * @return int
      */
-    function consultar()
+    public static function consultar()
     {
+        
         $Obj_Conexao = new CONEXAO();
 
         $pega_dados = $Obj_Conexao->Consulta("select * from USUARIO");
