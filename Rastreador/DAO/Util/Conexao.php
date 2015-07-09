@@ -9,13 +9,13 @@ class CONEXAO
 
   {
 
-          var $usuario = "user";
+          var $usuario = "root";
 
-          var $senha = "password";
+          var $senha = "root";
 
           var $sid = "localhost";
 
-          var $banco = "database";
+          var $banco = "rastreador";
 
           var $consulta = "";
 
