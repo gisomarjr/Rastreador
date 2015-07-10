@@ -11,11 +11,11 @@ class CONEXAO
 
           var $usuario = "root";
 
-          var $senha = "root";
+          var $senha = "%Admin&2015";
 
           var $sid = "localhost";
 
-          var $banco = "rastreador";
+          var $banco = "projectus";
 
           var $consulta = "";
 
@@ -60,13 +60,13 @@ class CONEXAO
 
   	}
 
-        function Consulta($consulta)
+        function RodaQuery($consulta)
 
   	{
-
+                
           	$this->consulta = $consulta;
 
-  		if ($resultado = mysql_query($this->consulta,$this->link))
+  		if ($resultado = mysql_query($this->consulta))
 
   		{
 
@@ -79,25 +79,5 @@ class CONEXAO
   		}
 
   	}
-        
-        function Inserir($sqlInsert)
-
-  	{
-        
-               	$this->consulta = $sqlInsert;
-
-  		if ($resultado = mysql_query($this->consulta,$this->link))
-
-  		{
-
-  			return $resultado;
-
-                } else {
-
-  			return 0;
-
-  		}
-
-  	}
-
+       
   }
