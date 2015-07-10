@@ -15,26 +15,45 @@ include 'Util/Conexao.php';
 
 class Usuario {
     
+     /**
+     * 
+     * @return int
+     */
+    function cadastrar()
+    {
+        
+        $Obj_Conexao = new CONEXAO();
+        
+        $resultado = $Obj_Conexao->Inserir("
+          INSERT INTO `rastreador`.`Usuario` (`Senha`, `Tipo`, `Login`, `Id_usuario`, `Nome`, `Id_loja`)
+          VALUES ('kjhkj', 'kjhkj', 'kjhkj', 'kljklsfs', 'mkj', 'klkl');
+
+         ");
+
+        return $resultado;
+    }
+    
+    
     /**
      * 
      * @return int
      */
-    public static function consultar()
+    function consultar()
     {
         
         $Obj_Conexao = new CONEXAO();
 
-        $pega_dados = $Obj_Conexao->Consulta("select * from USUARIO");
+        $pega_dados = $Obj_Conexao->Consulta("select * from Usuario");
 
-        $retorno = mysql_num_rows($id);
+        $retorno = mysql_num_rows($pega_dados);
 
         if($retorno == 0 )
 
         {
 
-                print("<center>Erro ao carregar as informações !!<br>");
+            print("<center>Erro ao carregar as informações !!<br>");
 
-                return 0;
+            return 0;
 
         }
 
@@ -44,21 +63,15 @@ class Usuario {
 
             for ($i = 0; $i < $retorno; ++$i)
 
-                      {
+                {
+                    $linha = mysql_fetch_array($pega_dados);
 
-                              $linha = mysql_fetch_array($pega_dados);
+                    $id = $linha[1];
 
-                              $id = $linha[1];
+                    $nome = $linha[2];
 
-                              $nome = $linha[1];
-
-                              print("$id - $nome");
-
-                      }
-
+                    print("$id - $nome");
+                }
         }
-
-       return $Obj_Conexao->Consulta;
- 
     }
 }

@@ -31,7 +31,7 @@ class CONEXAO
   	function Conecta()
 
   	{
-
+                
   		$this->link = mysql_connect($this->sid,$this->usuario,$this->senha);
 
   		if (!$this->link)
@@ -65,6 +65,26 @@ class CONEXAO
   	{
 
           	$this->consulta = $consulta;
+
+  		if ($resultado = mysql_query($this->consulta,$this->link))
+
+  		{
+
+  			return $resultado;
+
+                } else {
+
+  			return 0;
+
+  		}
+
+  	}
+        
+        function Inserir($sqlInsert)
+
+  	{
+        
+               	$this->consulta = $sqlInsert;
 
   		if ($resultado = mysql_query($this->consulta,$this->link))
 
