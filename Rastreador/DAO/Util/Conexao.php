@@ -11,11 +11,11 @@ class CONEXAO
 
           var $usuario = "root";
 
-          var $senha = "%Admin&2015";
+          var $senha = "root";
 
           var $sid = "localhost";
 
-          var $banco = "projectus";
+          var $banco = "rastreador";
 
           var $consulta = "";
 

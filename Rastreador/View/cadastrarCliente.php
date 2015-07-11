@@ -23,7 +23,7 @@ and open the template in the editor.
     <body>
       
         <div align="center">
-            <form action="../Action/Usuario.php" method="post" class="form-horizontal">
+            <form action="../Action/Cliente.php" method="post" class="form-horizontal">
     <fieldset>
 
 <!-- Form Name -->
@@ -69,6 +69,7 @@ and open the template in the editor.
 <div class="control-group">
   <label class="control-label" for="btnEnviar"></label>
   <div class="controls">
+    <input type="hidden" name="acao" value="cadastrar">
     <button id="btnEnviar" name="btnEnviar" class="btn btn-success">Enviar</button>
   </div>
 </div>
