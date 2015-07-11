@@ -33,25 +33,27 @@ and open the template in the editor.
 		<div class="col-md-4 col-md-offset-4">
     		<div class="panel panel-default">
 			  	<div class="panel-heading">
-			    	<h3 class="panel-title">Please sign in</h3>
+			    	<h3 class="panel-title">Efetuar Login</h3>
 			 	</div>
 			  	<div class="panel-body">
-			    	<form accept-charset="UTF-8" role="form">
+                                    <form method="post" action="" accept-charset="UTF-8" role="form">
                     <fieldset>
 			    	  	<div class="form-group">
-			    		    <input class="form-control" placeholder="E-mail" name="email" type="text">
+			    		    <input class="form-control" placeholder="Login" name="login" type="text">
 			    		</div>
 			    		<div class="form-group">
-			    			<input class="form-control" placeholder="Password" name="password" type="password" value="">
+			    			<input class="form-control" placeholder="Senha" name="senha" type="password" value="">
 			    		</div>
-			    		<div class="checkbox">
-			    	    	<label>
-			    	    		<input name="remember" type="checkbox" value="Remember Me"> Remember Me
-			    	    	</label>
+                                            
+			    <select id="tipo" name="tipo" class="form-control input-lg">
+			      <option value="1">Administrador</option>
+			      <option value="2">Funcionario</option>
+			      <option value="3">Cliente</option>
+			    </select>
+                                           
 			    	    </div>
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
                                        
-                                        <a class="btn btn-lg btn-success btn-block"  href="">Cadastrar</a>
 			    	</fieldset>
 			      	</form>
 			    </div>
