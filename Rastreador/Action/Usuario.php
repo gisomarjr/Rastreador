@@ -1,6 +1,7 @@
 <?php
 
 include '../Controller/Usuario.php';
+ini_set('display_errors', '1');
 
     $acao = $_POST['acao'];
 

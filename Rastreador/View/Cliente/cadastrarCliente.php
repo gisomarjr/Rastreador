@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        
+         
          <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -23,7 +23,7 @@ and open the template in the editor.
     <body>
       
         <div align="center">
-            <form action="../Action/Cliente.php" method="post" class="form-horizontal">
+            <form action="../../Action/Cliente.php" method="post" class="form-horizontal">
     <fieldset>
 
 <!-- Form Name -->
