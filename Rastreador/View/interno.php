@@ -2,6 +2,7 @@
     ini_set('display_errors', '1');
     include '../Controller/Seguranca.php';
     Seguranca::verificaLogado();
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,8 +60,11 @@
 							<li class=""><a href="#">Other Link</a></li>
 							<li class=""><a href="#">Other Link</a></li>
 							<li class="divider"></li>
-                                                        <li> <a class="sair" href="#">Sair</a></li>
-						</ul>
+                                                        <form target="post" name="formSair" action="../Controller/Seguranca.php"> 
+                                                            <input type="hidden" name="acao" value="sair">
+                                                            <li> <a class="" onclick="javascript:document.formSair.submit();" href="#">Sair</a></li>
+                                                        </form>
+                                                </ul>
 					</li>
 				</ul>
 			</div><!-- /.navbar-collapse -->
