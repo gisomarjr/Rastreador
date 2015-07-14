@@ -40,6 +40,27 @@ class ControllerUsuario
         }
      }
      
-     
+     /**
+      * Retorna o tipo do usuario
+      * @param int $idTipoUsuario
+      * 
+      * --administrador
+      * --vendedor
+      * --analista
+      */
+     static function verificaPerfil($idTipoUsuario){
+         
+         switch ($idTipoUsuario){
+             
+             case 1:
+                 return "Administrador";
+             case 2:
+                 return "Vendedor";
+             case 3:
+                 return "Analista";
+                 
+         }
+         
+     }
 
 }

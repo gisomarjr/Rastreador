@@ -1,6 +1,7 @@
 <?php
     ini_set('display_errors', '1');
     include '../Controller/Seguranca.php';
+    include '../Controller/Usuario.php';
     Seguranca::verificaLogado();
    
 ?>
@@ -39,7 +40,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#">
-				Rastreador 
+                            Rastreador - <?php echo ControllerUsuario::verificaPerfil($_SESSION['tipo']); ?>
 			</a>
 		</div>
 
@@ -72,75 +73,7 @@
 	</nav>
     
     <!-- Menu a esquerda -->
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <ul class="nav nav-pills nav-stacked admin-menu">
-                <li class="active"><a href="#" data-target-id="home"><i class="fa fa-home fa-fw"></i>Home</a></li>
-                <li><a href="http://www.jquery2dotnet.com" data-target-id="widgets"><i class="fa fa-list-alt fa-fw"></i>Widgets</a></li>
-                <li><a href="http://www.jquery2dotnet.com" data-target-id="pages"><i class="fa fa-file-o fa-fw"></i>Pages</a></li>
-                <li><a href="http://www.jquery2dotnet.com" data-target-id="charts"><i class="fa fa-bar-chart-o fa-fw"></i>Charts</a></li>
-                <li><a href="http://www.jquery2dotnet.com" data-target-id="table"><i class="fa fa-table fa-fw"></i>Table</a></li>
-                <li><a href="http://www.jquery2dotnet.com" data-target-id="forms"><i class="fa fa-tasks fa-fw"></i>Forms</a></li>
-                <li><a href="http://www.jquery2dotnet.com" data-target-id="calender"><i class="fa fa-calendar fa-fw"></i>Calender</a></li>
-                <li><a href="http://www.jquery2dotnet.com" data-target-id="library"><i class="fa fa-book fa-fw"></i>Library</a></li>
-                <li><a href="http://www.jquery2dotnet.com" data-target-id="applications"><i class="fa fa-pencil fa-fw"></i>Applications</a></li>
-                <li><a href="http://www.jquery2dotnet.com" data-target-id="settings"><i class="fa fa-cogs fa-fw"></i>Settings</a></li>
-            </ul>
-        </div>
-        <div class="col-md-9 well admin-content" id="home">
-            Home
-        </div>
-        <div class="col-md-9 well admin-content" id="widgets">
-            Widgets
-        </div>
-        <div class="col-md-9 well admin-content" id="pages">
-            Pages
-        </div>
-        <div class="col-md-9 well admin-content" id="charts">
-            Charts
-        </div>
-        <div class="col-md-9 well admin-content" id="table">
-            Table
-        </div>
-        <div class="col-md-9 well admin-content" id="forms">
-            Forms
-        </div>
-        <div class="col-md-9 well admin-content" id="calender">
-            Calender
-        </div>
-        <div class="col-md-9 well admin-content" id="library">
-            Library
-        </div>
-        <div class="col-md-9 well admin-content" id="applications">
-            Applications
-        </div>
-        <div class="col-md-9 well admin-content" id="settings">
-            Settings
-        </div>
-    </div>
-</div>
-
-<script type="text/javascript">
-$(document).ready(function()
-{
-    var navItems = $('.admin-menu li > a');
-    var navListItems = $('.admin-menu li');
-    var allWells = $('.admin-content');
-    var allWellsExceptFirst = $('.admin-content:not(:first)');
-    
-    allWellsExceptFirst.hide();
-    navItems.click(function(e)
-    {
-        e.preventDefault();
-        navListItems.removeClass('active');
-        $(this).closest('li').addClass('active');
-        
-        allWells.hide();
-        var target = $(this).attr('data-target-id');
-        $('#' + target).show();
-    });
-});
+<?php include '../include/menuAdministrador.html'; ?>
 </script>
 </body>
 </html>
