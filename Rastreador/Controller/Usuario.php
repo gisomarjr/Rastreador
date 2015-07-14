@@ -7,8 +7,10 @@ class ControllerUsuario
 {
      function cadastrar($senha,$tipo,$login,$nome)
      {
+        $criptografia = md5($senha);
+        
         $DAOUsuario = new Usuario();
-        $DAOUsuario->cadastrar($senha, $tipo, $login, $nome);
+        $DAOUsuario->cadastrar($criptografia, $tipo, $login, $nome);
      }
 
      function login($senha, $tipo, $login) 
@@ -17,8 +19,10 @@ class ControllerUsuario
         
         $dados = array();
         
+        $criptografia = md5($senha);
+        
         $DAOUsuario = new Usuario();
-        $dados = $DAOUsuario->login($senha, $tipo, $login);
+        $dados = $DAOUsuario->login($criptografia, $tipo, $login);
         
         if(count($dados) > 0){
             
@@ -26,7 +30,7 @@ class ControllerUsuario
             $_SESSION['nome'] = $dados['nome'];
             $_SESSION['tipo'] = $dados['tipo'];
 
-             header("Location: /View/Cliente/interno.php");  
+             header("Location: /View/interno.php");  
         
              
         }else{
@@ -35,5 +39,7 @@ class ControllerUsuario
            
         }
      }
+     
+     
 
 }

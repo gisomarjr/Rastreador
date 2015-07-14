@@ -1,10 +1,14 @@
-
+<?php
+    ini_set('display_errors', '1');
+    include '../Controller/Seguranca.php';
+    Seguranca::verificaLogado();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>Vertical Admin Menu Single Page jQuery - Bootsnipp.com</title>
+    <title>Usuário Interno</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <style type="text/css">
@@ -16,7 +20,10 @@
     
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
+    
+    <!-- jquery -->
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+        
 </head>
 <body>
     
@@ -31,7 +38,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#">
-				Rastreador
+				Rastreador 
 			</a>
 		</div>
 
@@ -44,7 +51,7 @@
 				<li><a href="http://www.pingpong-labs.com" target="_blank">Visit Site</a></li>
 				<li class="dropdown ">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						Account
+						Seu Perfil
 						<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li class="dropdown-header">SETTINGS</li>
@@ -52,7 +59,7 @@
 							<li class=""><a href="#">Other Link</a></li>
 							<li class=""><a href="#">Other Link</a></li>
 							<li class="divider"></li>
-							<li><a href="#">Logout</a></li>
+                                                        <li> <a class="sair" href="#">Sair</a></li>
 						</ul>
 					</li>
 				</ul>
