@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        
+         
          <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -18,16 +18,16 @@ and open the template in the editor.
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     
         
-        <title>Cadastrar Cliente</title>
+        <title>Cadastrar Usuário</title>
     </head>
     <body>
       
         <div align="center">
-            <form action="../Action/Cliente.php" method="post" class="form-horizontal">
+            <form action="../../Action/Usuario.php" method="post" class="form-horizontal">
     <fieldset>
 
 <!-- Form Name -->
-<legend>Cadastrar Cliente</legend>
+<legend>Cadastrar Usuario</legend>
 
 <!-- Text input-->
 <div class="control-group">
@@ -40,27 +40,30 @@ and open the template in the editor.
 
 <!-- Text input-->
 <div class="control-group">
-  <label class="control-label" for="cpf">CPF:</label>
+  <label class="control-label" for="cpf">Login:</label>
   <div class="controls">
-    <input id="cpf" name="cpf" type="text" placeholder="CPF" class="input-xlarge" required="">
-    <p class="help-block">Digite um CPF válido</p>
+    <input id="cpf" name="login" type="text" placeholder="login" class="input-xlarge" required="">
+ 
   </div>
 </div>
 
 <!-- Text input-->
 <div class="control-group">
-  <label class="control-label" for="rg">RG</label>
+  <label class="control-label" for="rg">Tipo</label>
   <div class="controls">
-    <input id="rg" name="rg" type="text" placeholder="RG" class="input-xlarge" required="">
-    
+     <select id="tipo" name="tipo" class="form-control input-lg">
+			      <option value="1">Administrador</option>
+			      <option value="2">Funcionario</option>
+			      <option value="3">Cliente</option>
+			    </select> 
   </div>
 </div>
 
 <!-- Text input-->
 <div class="control-group">
-  <label class="control-label" for="endereco">Endereço:</label>
+  <label class="control-label" for="endereco">Senha:</label>
   <div class="controls">
-    <input id="endereco" name="endereco" type="text" placeholder="Endereço completo" class="input-xlarge" required="">
+      <input id="endereco" name="senha" type="password" placeholder="Informe a Senha" class="input-xlarge" required="">
     
   </div>
 </div>
@@ -70,6 +73,7 @@ and open the template in the editor.
   <label class="control-label" for="btnEnviar"></label>
   <div class="controls">
     <input type="hidden" name="acao" value="cadastrar">
+    
     <button id="btnEnviar" name="btnEnviar" class="btn btn-success">Enviar</button>
   </div>
 </div>

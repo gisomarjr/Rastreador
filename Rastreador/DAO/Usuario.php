@@ -22,13 +22,13 @@ class Usuario {
      * @param int $idLoja id da loja do usuário
      * @return int
      */
-    function cadastrar($senha,$tipo,$login,$nome,$idLoja)
+    function cadastrar($senha,$tipo,$login,$nome)
     {
         ini_set('display_errors', '1');
         
         $Obj_Conexao = new CONEXAO();
         
-        $resultado = $Obj_Conexao->RodaQuery("INSERT INTO `usuario` (`Senha`, `Tipo`, `Login`, `Nome`, `Id_loja`) VALUES ('$senha', '$tipo', '$login', '$nome', '$idLoja');");
+        $resultado = $Obj_Conexao->RodaQuery("INSERT INTO `rastreador`.`Usuario` (`Senha`, `Tipo`, `Login`, `Nome`) VALUES ('$senha', '$tipo', '$login', '$nome');");
 
         return $resultado;
     }
@@ -103,4 +103,35 @@ class Usuario {
                 }
         }
     }
+
+    function login($senha, $tipo, $login)
+    {
+        
+        ini_set('display_errors', '1');
+        
+        $Obj_Conexao = new CONEXAO();
+        
+        $resultado = $Obj_Conexao->RodaQuery("select * from Usuario where senha = '$senha' and tipo = '$tipo' and login = '$login'");
+
+        $retorno = mysql_num_rows($resultado);
+        
+        $dados = array();
+        
+        if($retorno > 0)
+        {
+            for ($i = 0; $i < $retorno; ++$i)
+
+            {
+                        $linha = mysql_fetch_array($resultado);
+                        
+                        $dados['id']   = $linha['Id_usuario'];
+                        $dados['nome'] = $linha['Nome'];
+                        $dados['tipo'] = $linha['Tipo'];
+                        
+            }
+        }
+        
+        return $dados;
+    }
+
 }

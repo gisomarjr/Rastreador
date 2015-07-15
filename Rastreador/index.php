@@ -36,7 +36,7 @@ and open the template in the editor.
 			    	<h3 class="panel-title">Efetuar Login</h3>
 			 	</div>
 			  	<div class="panel-body">
-                                    <form method="post" action="" accept-charset="UTF-8" role="form">
+                                    <form method="post" action="Action/Usuario.php" accept-charset="UTF-8" role="form">
                     <fieldset>
 			    	  	<div class="form-group">
 			    		    <input class="form-control" placeholder="Login" name="login" type="text">
@@ -52,6 +52,7 @@ and open the template in the editor.
 			    </select>
                                            
 			    	    </div>
+                                        <input type="hidden" name="acao" value="login">
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
                                        
 			    	</fieldset>
