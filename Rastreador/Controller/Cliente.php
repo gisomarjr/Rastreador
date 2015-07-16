@@ -26,7 +26,7 @@ class ControllerCliente
      function listar()
      {
         $DAOCliente = new Cliente();
-        $DAOCliente->listar();
+        return $DAOCliente->listar();
      }
     
 }

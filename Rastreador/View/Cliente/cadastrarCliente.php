@@ -4,22 +4,9 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
-    <head>
-        <meta charset="UTF-8">
-         
-         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        
-        <!--Jquery -->
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        
+            
+    
         <script type="text/javascript">
 	jQuery(document).ready(function(){
 		jQuery('#ajax_form').submit(function(){
@@ -35,12 +22,36 @@ and open the template in the editor.
 					if(data.sucesso)
                                         {
                                             $(function(){
-                                                $("#msgSucesso").append("<span><strong>Cadastro Efetuado com Sucesso!</strong></span>");
+                                                 
+                                                $(function(){
+                                                $("#msgSucesso").html("");
+                                                $("#msgSucesso").append("<div  class='container'>\n\
+                                                                <div  class='row'>\n\
+                                                  <div  class='col-md-6 col-md-offset-3 '>\n\
+                                                  <div class='alert alert-success'>\n\
+                                                  <span class='glyphicon glyphicon-ok'></span> <strong>Cadastro de Cliente</strong><hr class='message-inner-separator'><p>Cadastro Efetuado com Sucesso!</p>\n\
+                                                                  </div>\n\
+                                                                  </div>\n\
+                                                                  </div>\n\
+                                                                  </div>");
+                                              
+                                            })
+                                            
                                             })
 
                                         }else{
                                             $(function(){
-                                                $("#msgErro").append("<span><strong>Erro ao tentar cadastrar o Cliente </strong></span>");
+                                                $("#msgErro").html("");
+                                                $("#msgErro").append("<div  class='container'>\n\
+                                                                <div  class='row'>\n\
+                                                  <div  class='col-md-6 col-md-offset-3 '>\n\
+                                                  <div class='alert alert-danger'>\n\
+                                                  <span class='glyphicon glyphicon-hand-right'></span> <strong>Erro :(</strong><hr class='message-inner-separator'><p>Não foi possível Cadastrar o Cliente</p>\n\
+                                                                  </div>\n\
+                                                                  </div>\n\
+                                                                  </div>\n\
+                                                                  </div>");
+                                              
                                             })
                                         }
 				}
@@ -57,7 +68,7 @@ and open the template in the editor.
     <body>
       
         <div align="center">
-            <form action="" id="ajax_form" method="post" class="form-horizontal">
+            <form action="#" id="ajax_form" method="post" class="form-horizontal">
     <fieldset>
 
 <!-- Form Name -->
@@ -66,7 +77,7 @@ and open the template in the editor.
 <!-- Text input-->
 <div class="control-group">
     
-    <div class="bg-success" id="msgSucesso"></div> <div class="bg-danger" id="msgErro"></div>
+    <div align="center" id="msgSucesso"></div> <div align="center" id="msgErro"></div>
   
     <label class="control-label" for="nome">Nome:</label>
   <div class="controls">
@@ -116,5 +127,4 @@ and open the template in the editor.
 
         </div>
             
-    </body>
-</html>
+    

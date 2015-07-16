@@ -64,8 +64,12 @@ ini_set('display_errors', '1');
      
      static function listar()
      {
+       
         $ControllerCliente = new ControllerCliente();
-        $ControllerCliente->listar();
+         
+        echo json_encode($ControllerCliente->listar());
+        
+        
      }
     
 }

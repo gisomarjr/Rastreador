@@ -70,32 +70,36 @@ class Cliente {
         $pega_dados = $Obj_Conexao->RodaQuery("select * from Cliente");
 
         $retorno = mysql_num_rows($pega_dados);
+        
+        $dadosCliente = array();
 
         if($retorno == 0 )
 
         {
 
-            print("<center>Não encontrado!<br>");
-
-            return 0;
+           $dadosCliente['qtdRegistro'] = 0;
+           
+           return $dadosCliente;
 
         }
 
         else
 
         {
-
-            for ($i = 0; $i < $retorno; ++$i)
+              for ($i = 0; $i < $retorno; ++$i)
 
                 {
                     $linha = mysql_fetch_array($pega_dados);
-
-                    $id = $linha[1];
-
-                    $nome = $linha[2];
-
-                    print("$id - $nome");
+                    
+                    $dadosCliente['endereco'] = $linha[0];
+                    $dadosCliente['rg'] = $linha[1];
+                    $dadosCliente['idCliente'] = $linha[2];
+                    $dadosCliente['cpf'] = $linha[3];
+                    $dadosCliente['nome'] = $linha[4];
+                    $dadosCliente['qtdRegistro'] = $i;
+        
                 }
+            return $dadosCliente;
         }
     }
 }
