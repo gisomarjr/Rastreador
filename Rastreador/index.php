@@ -7,6 +7,10 @@ and open the template in the editor.
 -->
 <html>
     <head>
+         <!--Jquery -->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+       
+        
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -23,10 +27,23 @@ and open the template in the editor.
         <style>
             body{padding-top:20px;}
         </style>
+         <style>
+            body { margin-top:30px; }
+hr.message-inner-separator
+{
+    clear: both;
+    margin-top: 10px;
+    margin-bottom: 13px;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+            
+        </style>
         
-        
-        <!--Jquery -->
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         
         <script type="text/javascript">
 	jQuery(document).ready(function(){
@@ -53,7 +70,7 @@ and open the template in the editor.
                                                 $("#msgErro").html("");
                                                 $("#msgErro").append("<div  class='container'>\n\
                                                                 <div  class='row'>\n\
-                                                  <div  class='col-xs-4 col-sm-3 '>\n\
+                                                  <div  class='col-md-4 col-md-offset-4'>\n\
                                                   <div class='alert alert-danger'>\n\
                                                   <span class='glyphicon glyphicon-hand-right'></span> <strong>Erro :(</strong><hr class='message-inner-separator'><p>Não foi possível efetuar o login</p>\n\
                                                                   </div>\n\
@@ -74,10 +91,13 @@ and open the template in the editor.
         
     </head>
     <body>
+        <div align="center" id="msgErro"></div>
 
 <div class="container">
     <div class="row">
+        
 		<div class="col-md-4 col-md-offset-4">
+                    
     		<div class="panel panel-default">
 			  	<div class="panel-heading">
 			    	<h3 class="panel-title">Efetuar Login</h3>
@@ -100,10 +120,6 @@ and open the template in the editor.
                                            
 			    	    </div>
                 
-                                  
-                                <div align="center" id="msgErro"></div>
-                                 
-        
                                         <input type="hidden" name="acao" value="login">
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
                 </div>
