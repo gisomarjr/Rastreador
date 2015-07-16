@@ -53,8 +53,8 @@ and open the template in the editor.
   <div class="controls">
      <select id="tipo" name="tipo" class="form-control input-lg">
 			      <option value="1">Administrador</option>
-			      <option value="2">Funcionario</option>
-			      <option value="3">Cliente</option>
+			      <option value="2">Vendedor</option>
+			      <option value="3">Analista</option>
 			    </select> 
   </div>
 </div>

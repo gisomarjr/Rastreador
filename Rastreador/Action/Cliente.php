@@ -42,7 +42,12 @@ ini_set('display_errors', '1');
      static function cadastrar($endereco,$rg,$cpf,$nome)
      {
         $ControllerCliente = new ControllerCliente();
-        $ControllerCliente->cadastrar($endereco,$rg,$cpf,$nome);
+        
+        $json = array();
+        
+        $json['sucesso'] = $ControllerCliente->cadastrar($endereco,$rg,$cpf,$nome);
+        
+        echo json_encode($json);
      }
      
      static function alterar($endereco,$rg,$cpf,$nome,$idCliente)

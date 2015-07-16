@@ -30,12 +30,14 @@ class ControllerUsuario
             $_SESSION['nome'] = $dados['nome'];
             $_SESSION['tipo'] = $dados['tipo'];
 
-             header("Location: /View/interno.php");  
-        
+            // header("Location: /View/interno.php");  
+            return 1;
              
         }else{
             
-            header("Location: /index.php"); 
+            return 0;
+            
+           // header("Location: /index.php"); 
            
         }
      }

@@ -16,14 +16,48 @@ and open the template in the editor.
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    
+        
+        <!--Jquery -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        
+        <script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery('#ajax_form').submit(function(){
+			var dados = jQuery( this ).serialize();
+ 
+			jQuery.ajax({
+				type: "POST",
+				url: "../../Action/Cliente.php",
+                                dataType : "json",
+				data: dados,
+				success: function( data )
+				{
+					if(data.sucesso)
+                                        {
+                                            $(function(){
+                                                $("#msgSucesso").append("<span><strong>Cadastro Efetuado com Sucesso!</strong></span>");
+                                            })
+
+                                        }else{
+                                            $(function(){
+                                                $("#msgErro").append("<span><strong>Erro ao tentar cadastrar o Cliente </strong></span>");
+                                            })
+                                        }
+				}
+			});
+			
+			return false;
+		});
+	});
+	</script>
+  
         
         <title>Cadastrar Cliente</title>
     </head>
     <body>
       
         <div align="center">
-            <form action="../../Action/Cliente.php" method="post" class="form-horizontal">
+            <form action="" id="ajax_form" method="post" class="form-horizontal">
     <fieldset>
 
 <!-- Form Name -->
@@ -31,7 +65,10 @@ and open the template in the editor.
 
 <!-- Text input-->
 <div class="control-group">
-  <label class="control-label" for="nome">Nome:</label>
+    
+    <div class="bg-success" id="msgSucesso"></div> <div class="bg-danger" id="msgErro"></div>
+  
+    <label class="control-label" for="nome">Nome:</label>
   <div class="controls">
     <input id="nome" name="nome" type="text" placeholder="Informe seu nome" class="input-xlarge" required="">
     

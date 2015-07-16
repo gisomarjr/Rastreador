@@ -73,7 +73,19 @@
 	</nav>
     
     <!-- Menu a esquerda -->
-<?php include '../include/menuAdministrador.html'; ?>
-</script>
+       
+<?php 
+    
+    $tipo = $_SESSION['tipo'];
+    switch ($tipo){
+        case "1":
+            include '../include/menuAdministrador.html'; 
+        break;
+        
+    }
+
+?>
+
+
 </body>
 </html>

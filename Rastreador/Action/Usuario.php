@@ -36,6 +36,11 @@ ini_set('display_errors', '1');
      static function login($senha,$tipo,$login)
      {
         $ControllerUsuario = new ControllerUsuario();
-        $ControllerUsuario->login($senha, $tipo, $login);
+        
+        $json = array();
+        
+        $json['sucesso'] = $ControllerUsuario->login($senha, $tipo, $login);
+        
+        echo json_encode($json);
      }
 }
