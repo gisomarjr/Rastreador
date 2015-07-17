@@ -72,21 +72,22 @@ class Cliente {
         $retorno = mysql_num_rows($pega_dados);
         
         $dadosCliente = array();
+        $cliente = array();
 
         if($retorno == 0 )
 
         {
 
-           $dadosCliente['qtdRegistro'] = 0;
            
-           return $dadosCliente;
+           
+           return  $cliente[0] = 0;
 
         }
 
         else
 
         {
-              for ($i = 0; $i < $retorno; ++$i)
+              for ($i = 1; $i <= $retorno; $i++)
 
                 {
                     $linha = mysql_fetch_array($pega_dados);
@@ -96,10 +97,11 @@ class Cliente {
                     $dadosCliente['idCliente'] = $linha[2];
                     $dadosCliente['cpf'] = $linha[3];
                     $dadosCliente['nome'] = $linha[4];
-                    $dadosCliente['qtdRegistro'] = $i;
-        
+                    $dadosCliente['indice'] = $i;
+                    
+                    $cliente[$i] = $dadosCliente;
                 }
-            return $dadosCliente;
+            return $cliente;
         }
     }
 }

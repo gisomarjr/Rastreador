@@ -13,12 +13,17 @@
                                 dataType : "json",
 				data: {acao : "listar"},
 				success: function( data )
+                   
 				{
-                                    $("#nome").html("<td id='nome'>" + data.nome + "</td>");
-                                    $("#endereco").html("<td id='endereco'>" + data.endereco + "</td>");
-                                    $("#rg").html("<td id='rg'>" + data.rg + "</td>");
-                                    $("#cpf").html("<td id='cpf'>" + data.cpf + "</td>");
-                                    $("#id").html("<td id='id'>" + data.idCliente + "</td>");
+                                    for(var i = 1; i <= 10; i++){ 
+                                        $("#nome" + i).html("<td id='nome'>" + data[i].nome + "</td>");
+                                        $("#endereco" + i).html("<td id='endereco'>" + data[i].endereco + "</td>");
+                                        $("#rg" + i).html("<td id='rg'>" + data[i].rg + "</td>");
+                                        $("#cpf" + i).html("<td id='cpf'>" + data[i].cpf + "</td>");
+                                        $("#id" + i).html("<td id='id'>" + data[i].idCliente + "</td>");
+                                    }
+                                   
+                                }
            
                                                 /*$("#msgSucesso").append("<div  class='container'>\n\
                                                                 <div  class='row'>\n\
@@ -30,7 +35,7 @@
                                                                   </div>\n\
                                                                   </div>");*/
                                          
-				}
+				
 			});
 			
 			return false;
@@ -63,7 +68,9 @@ $("#mytable #checkall").click(function () {
 		
         
         <div class="col-md-12">
-        <h4>Bootstrap Snipp for Datatable</h4>
+        <h4>Consultar Cliente</h4>
+        
+         <h5>lista de até 10 clientes</h5>
         <div class="table-responsive">
 
                 
@@ -71,7 +78,7 @@ $("#mytable #checkall").click(function () {
                    
                    <thead>
                    
-                   <th><input type="checkbox" id="checkall" /></th>
+                   
                    <th>Id</th>
                     <th>Nome do Cliente</th>
                      <th>Endereço</th>
@@ -86,15 +93,29 @@ $("#mytable #checkall").click(function () {
    
     
  <tr>
-    <td><input type="checkbox" class="checkthis" /></td>
-    <td id="id"></td>
-    <td id="nome"></td>
-    <td id="endereco"></td>
-    <td id="cpf"></td>
-    <td id="rg"></td>
+    
+    
+    <td id="id1"></td>
+    <td id="nome1"></td>
+    <td id="endereco1"></td>
+    <td id="cpf1"></td>
+    <td id="rg1"></td>
+    
     <td><p data-placement="top" data-toggle="tooltip" title="Editar"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
     <td><p data-placement="top" data-toggle="tooltip" title="Excluir"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-    </tr>
+   
+    
+ </tr>
+ 
+ <tr>
+    <td id="id2"></td>
+    <td id="nome2"></td>
+    <td id="endereco2"></td>
+    <td id="cpf2"></td>
+    <td id="rg2"></td>
+    <td><p data-placement="top" data-toggle="tooltip" title="Editar"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+    <td><p data-placement="top" data-toggle="tooltip" title="Excluir"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+ </tr>
       
     </tbody>
         
