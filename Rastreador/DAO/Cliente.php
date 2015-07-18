@@ -80,7 +80,7 @@ class Cliente {
 
            
            
-           return  $cliente[0] = 0;
+           return  $cliente;
 
         }
 
