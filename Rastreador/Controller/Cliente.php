@@ -28,5 +28,11 @@ class ControllerCliente
         $DAOCliente = new Cliente();
         return $DAOCliente->listar();
      }
+     
+     function consultarID($idCliente)
+     {
+        $DAOCliente = new Cliente();
+        return $DAOCliente->consultarID($idCliente);
+     }
     
 }

@@ -20,10 +20,10 @@ $("#mytable #checkall").click(function () {
 });
 </script>
 
+
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		
- 
 			jQuery.ajax({
 				type: "POST",
 				url: "../../Action/Cliente.php",
@@ -35,20 +35,16 @@ $("#mytable #checkall").click(function () {
                                     
                                    for(var i = 1; i <= data.indice; i++){ 
                                        
-                                       
-                                       
-                                       
-                                        $("#conteudo").append("<tr>\n\
+                                          $("#conteudo").append("<tr>\n\
                                                                <td >"+data[i].idCliente+"</td>\n\
                                                                <td >"+data[i].nome+"</td>\n\
                                                                <td >"+data[i].endereco+"</td>\n\
                                                                <td >"+data[i].cpf+"</td>\n\
                                                                <td >"+data[i].rg+"</td>\n\
-                                                               <td><p data-placement='top' data-toggle='tooltip' title='Editar'><button class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' ><span class='glyphicon glyphicon-pencil'></span></button></p></td>\n\
-                                                               <td><p data-placement='top' data-toggle='tooltip' title='Excluir'><button class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' ><span class='glyphicon glyphicon-trash'></span></button></p></td>\n\
+                                                               <td><p data-placement='top' data-toggle='tooltip' title='Editar'><button onclick='consultarID("+data[i].idCliente+",\"editar\");' class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' ><span class='glyphicon glyphicon-pencil'></span></button></p></td>\n\
+                                                               <td><p data-placement='top' data-toggle='tooltip' title='Excluir'><button onclick='consultarID("+data[i].idCliente+",\"excluir\");'  class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' ><span class='glyphicon glyphicon-trash'></span></button></p></td>\n\
                                                                </tr>");
-                                       
-                                       
+
                                               }
                                    
                                 }
@@ -60,6 +56,50 @@ $("#mytable #checkall").click(function () {
 			return false;
 		
 	});
+	</script>
+
+<script type="text/javascript">
+	
+		function consultarID(idCliente,tipo){
+			jQuery.ajax({
+				type: "POST",
+				url: "../../Action/Cliente.php",
+                                dataType : "json",
+				data: {acao : "consultarID", idCliente: idCliente},
+				success: function( data )
+                   
+				{
+                                   if(tipo === "editar"){ 
+                                    for(var i = 1; i <= data.indice; i++)
+                                    {
+
+                                        $('#valorNomeCliente').val(data[i].nome);
+                                        $('#valorRgCliente').val(data[i].rg);
+                                        $('#valorCpfCliente').val(data[i].cpf);
+                                        $('#valorEnderecoCliente').val(data[i].endereco);
+                                    }
+                                }
+                                    else
+                                    {
+                                        for(var i = 1; i <= data.indice; i++)
+                                        {
+                                            $('#ExcluirNomeCliente').html("");
+                                            $('#ExcluirCpfCliente').html("");
+                                            $('#ExcluirNomeCliente').append(data[i].nome);
+                                            $('#ExcluirCpfCliente').append(data[i].cpf);
+                                        }
+                                    }
+                                }
+                                   
+                                
+           
+                                            
+				
+			});
+			
+			return false;
+		
+                                                   }
 	</script>
 
 
@@ -116,30 +156,43 @@ $("#mytable #checkall").click(function () {
 	</div>
 </div>
 
-
+<!--Editar-->
 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
       <div class="modal-dialog">
     <div class="modal-content">
           <div class="modal-header">
+              
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
-      </div>
+        
+        <h4 class="modal-title custom_align" id="Heading">Editar Cliente</h4>
+          
+          </div>
           <div class="modal-body">
           <div class="form-group">
-        <input class="form-control " type="text" placeholder="Mohsin">
+              
+        Nome: <input id="valorNomeCliente" class="form-control" type="text" placeholder="Nome do Cliente">
+        
+        </div>
+        
+        <div class="form-group">
+        
+       CPF: <input id="valorCpfCliente" class="form-control " type="text" placeholder="CPF">
         </div>
         <div class="form-group">
         
-        <input class="form-control " type="text" placeholder="Irshad">
+       RG: <input id="valorRgCliente" class="form-control " type="text" placeholder="RG">
+
         </div>
+       
         <div class="form-group">
-        <textarea rows="2" class="form-control" placeholder="CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan"></textarea>
-    
         
+        Endereço: <input id="valorEnderecoCliente" class="form-control " type="text" placeholder="Endereço">
+
         </div>
+              
       </div>
           <div class="modal-footer ">
-        <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+        <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Atualizar</button>
       </div>
         </div>
     <!-- /.modal-content --> 
@@ -148,22 +201,25 @@ $("#mytable #checkall").click(function () {
     </div>
     
     
-    
+    <!--Excluir-->
     <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
       <div class="modal-dialog">
     <div class="modal-content">
           <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+        <h4 class="modal-title custom_align" id="Heading">Deletar o Cliente</h4>
       </div>
           <div class="modal-body">
        
-       <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
+       <div class="alert alert-danger">
+           <span class="glyphicon glyphicon-warning-sign"></span> 
+           Você deseja excluir o cliente: <b id="ExcluirNomeCliente" ></b> vinculado ao CPF: <b id="ExcluirCpfCliente"></b> ?
+       </div>
        
       </div>
         <div class="modal-footer ">
-        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Sim</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Não</button>
       </div>
         </div>
     <!-- /.modal-content --> 

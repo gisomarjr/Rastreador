@@ -77,11 +77,47 @@ class Cliente {
         if($retorno == 0 )
 
         {
-
-           
-           
            return  $cliente;
+        }
 
+        else
+
+        {
+              for ($i = 1; $i <= $retorno; $i++)
+
+                {
+                    $linha = mysql_fetch_array($pega_dados);
+                    
+                    $dadosCliente['endereco'] = $linha[0];
+                    $dadosCliente['rg'] = $linha[1];
+                    $dadosCliente['idCliente'] = $linha[2];
+                    $dadosCliente['cpf'] = $linha[3];
+                    $dadosCliente['nome'] = $linha[4];
+                    
+                    
+                    $cliente[$i] = $dadosCliente;
+                    $cliente['indice'] = $i;
+                }
+            return $cliente;
+        }
+    }
+    
+    function consultarID($idCliente)
+    {
+        
+        $Obj_Conexao = new CONEXAO();
+
+        $pega_dados = $Obj_Conexao->RodaQuery("select * from Cliente where Id_cliente='$idCliente'");
+
+        $retorno = mysql_num_rows($pega_dados);
+        
+        $dadosCliente = array();
+        $cliente = array();
+
+        if($retorno == 0 )
+
+        {
+           return  $cliente;
         }
 
         else

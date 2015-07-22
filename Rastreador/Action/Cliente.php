@@ -33,6 +33,11 @@ ini_set('display_errors', '1');
             $idCliente = $_POST['idCliente'];
             ActionCliente::excluir($idCliente);
             break;
+        case "consultarID":
+            
+            $idCliente = $_POST['idCliente'];
+            ActionCliente::consultarID($idCliente);
+            break;
     }
 
 
@@ -70,6 +75,12 @@ ini_set('display_errors', '1');
         echo json_encode($ControllerCliente->listar());
         
         
+     }
+     
+     static function consultarID($idCliente)
+     {
+        $ControllerCliente = new ControllerCliente();
+        echo json_encode($ControllerCliente->consultarID($idCliente));
      }
     
 }
