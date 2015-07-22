@@ -1,50 +1,6 @@
 <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 -->
-
-
-<script type="text/javascript">
-	jQuery(document).ready(function(){
-		
- 
-			jQuery.ajax({
-				type: "POST",
-				url: "../../Action/Cliente.php",
-                                dataType : "json",
-				data: {acao : "listar"},
-				success: function( data )
-                   
-				{
-                                    for(var i = 1; i <= 10; i++){ 
-                                        $("#nome" + i).html("<td id='nome'>" + data[i].nome + "</td>");
-                                        $("#endereco" + i).html("<td id='endereco'>" + data[i].endereco + "</td>");
-                                        $("#rg" + i).html("<td id='rg'>" + data[i].rg + "</td>");
-                                        $("#cpf" + i).html("<td id='cpf'>" + data[i].cpf + "</td>");
-                                        $("#id" + i).html("<td id='id'>" + data[i].idCliente + "</td>");
-                                    }
-                                   
-                                }
-           
-                                                /*$("#msgSucesso").append("<div  class='container'>\n\
-                                                                <div  class='row'>\n\
-                                                  <div  class='col-md-6 col-md-offset-3 '>\n\
-                                                  <div class='alert alert-success'>\n\
-                                                  <span class='glyphicon glyphicon-ok'></span> <strong>Cadastro de Cliente</strong><hr class='message-inner-separator'><p>Cadastro Efetuado com Sucesso!</p>\n\
-                                                                  </div>\n\
-                                                                  </div>\n\
-                                                                  </div>\n\
-                                                                  </div>");*/
-                                         
-				
-			});
-			
-			return false;
-		
-	});
-	</script>
-
-
-
 <script>
 $(document).ready(function(){
 $("#mytable #checkall").click(function () {
@@ -60,9 +16,55 @@ $("#mytable #checkall").click(function () {
         }
     });
     
-    $("[data-toggle=tooltip]").tooltip();
+    //$("[data-toggle=tooltip]").tooltip();
 });
 </script>
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		
+ 
+			jQuery.ajax({
+				type: "POST",
+				url: "../../Action/Cliente.php",
+                                dataType : "json",
+				data: {acao : "listar"},
+				success: function( data )
+                   
+				{
+                                    
+                                   for(var i = 1; i <= data.indice; i++){ 
+                                       
+                                       
+                                       
+                                       
+                                        $("#conteudo").append("<tr>\n\
+                                                               <td >"+data[i].idCliente+"</td>\n\
+                                                               <td >"+data[i].nome+"</td>\n\
+                                                               <td >"+data[i].endereco+"</td>\n\
+                                                               <td >"+data[i].cpf+"</td>\n\
+                                                               <td >"+data[i].rg+"</td>\n\
+                                                               <td><p data-placement='top' data-toggle='tooltip' title='Editar'><button class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' ><span class='glyphicon glyphicon-pencil'></span></button></p></td>\n\
+                                                               <td><p data-placement='top' data-toggle='tooltip' title='Excluir'><button class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' ><span class='glyphicon glyphicon-trash'></span></button></p></td>\n\
+                                                               </tr>");
+                                       
+                                       
+                                              }
+                                   
+                                }
+           
+                                            
+				
+			});
+			
+			return false;
+		
+	});
+	</script>
+
+
+
+
 <div class="container">
 	<div class="row">
 		
@@ -88,36 +90,12 @@ $("#mytable #checkall").click(function () {
                       
                        <th>Excluir</th>
                    </thead>
-    <tbody>
+                    
+                   <tbody id="conteudo">
+        
+        
     
-   
-    
- <tr>
-    
-    
-    <td id="id1"></td>
-    <td id="nome1"></td>
-    <td id="endereco1"></td>
-    <td id="cpf1"></td>
-    <td id="rg1"></td>
-    
-    <td><p data-placement="top" data-toggle="tooltip" title="Editar"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Excluir"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-   
-    
- </tr>
- 
- <tr>
-    <td id="id2"></td>
-    <td id="nome2"></td>
-    <td id="endereco2"></td>
-    <td id="cpf2"></td>
-    <td id="rg2"></td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Editar"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Excluir"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
- </tr>
-      
-    </tbody>
+                   </tbody>
         
 </table>
 

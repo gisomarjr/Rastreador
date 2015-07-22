@@ -97,9 +97,10 @@ class Cliente {
                     $dadosCliente['idCliente'] = $linha[2];
                     $dadosCliente['cpf'] = $linha[3];
                     $dadosCliente['nome'] = $linha[4];
-                    $dadosCliente['indice'] = $i;
+                    
                     
                     $cliente[$i] = $dadosCliente;
+                    $cliente['indice'] = $i;
                 }
             return $cliente;
         }
