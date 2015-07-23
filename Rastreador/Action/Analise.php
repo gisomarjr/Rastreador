@@ -53,13 +53,24 @@ ini_set('display_errors', '1');
      static function alterar($endereco,$rg,$cpf,$nome,$idCliente)
      {
         $ControllerCliente = new ControllerCliente();
-        $ControllerCliente->alterar($endereco,$rg,$cpf,$nome,$idCliente);
+        
+        $json = array();
+        
+        $json['sucesso'] = $ControllerCliente->alterar($endereco,$rg,$cpf,$nome,$idCliente);
+        
+        echo json_encode($json);
      }
      
      static function excluir($idCliente)
      {
         $ControllerCliente = new ControllerCliente();
-        $ControllerCliente->excluir($idCliente);
+        
+        $json = array();
+        
+        $json['sucesso'] = $ControllerCliente->excluir($idCliente);
+        
+        echo json_encode($json);
+        
      }
      
      static function listar()

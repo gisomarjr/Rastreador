@@ -14,7 +14,7 @@ class ControllerCliente
      function alterar($endereco,$rg,$cpf,$nome,$idCliente)
      {
         $DAOCliente = new Cliente();
-        $DAOCliente->alterar($endereco,$rg,$cpf,$nome,$idCliente);
+        return $DAOCliente->alterar($endereco,$rg,$cpf,$nome,$idCliente);
      }
      
      function excluir($idCliente)
