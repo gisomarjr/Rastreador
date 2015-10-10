@@ -28,7 +28,7 @@ class Usuario {
         
         $Obj_Conexao = new CONEXAO();
         
-        $resultado = $Obj_Conexao->RodaQuery("INSERT INTO `rastreador`.`Usuario` (`Senha`, `Tipo`, `Login`, `Nome`) VALUES ('$senha', '$tipo', '$login', '$nome');");
+        $resultado = $Obj_Conexao->RodaQuery("INSERT INTO Usuario (`Senha`, `Tipo`, `Login`, `Nome`) VALUES ('$senha', '$tipo', '$login', '$nome');");
 
         return $resultado;
     }
@@ -37,7 +37,7 @@ class Usuario {
      * 
      * @return int
      */
-    function alterar($senha,$tipo,$login,$nome,$idLoja)
+    function alterar($tipo,$nome,$login,$idUsuario)
     {
         ini_set('display_errors', '1');
         
@@ -52,13 +52,13 @@ class Usuario {
      * 
      * @return int
      */
-    function excluir($id)
+   function excluir($id)
     {
         ini_set('display_errors', '1');
         
         $Obj_Conexao = new CONEXAO();
         
-        $resultado = $Obj_Conexao->RodaQuery("");
+        $resultado = $Obj_Conexao->RodaQuery("DELETE FROM `Usuario` WHERE `Id_usuario`='$id';");
 
         return $resultado;
     }
@@ -75,32 +75,33 @@ class Usuario {
         $pega_dados = $Obj_Conexao->RodaQuery("select * from Usuario");
 
         $retorno = mysql_num_rows($pega_dados);
+        
+        $dadosUsuario = array();
+        $usuario = array();
 
         if($retorno == 0 )
 
         {
-
-            print("<center>Não encontrado!<br>");
-
-            return 0;
-
+           return  $usuario;
         }
 
         else
 
         {
-
-            for ($i = 0; $i < $retorno; ++$i)
+              for ($i = 1; $i <= $retorno; $i++)
 
                 {
                     $linha = mysql_fetch_array($pega_dados);
-
-                    $id = $linha[1];
-
-                    $nome = $linha[2];
-
-                    print("$id - $nome");
+     
+                    $dadosUsuario['tipo'] = $linha['Tipo'];
+                    $dadosUsuario['login'] = $linha['Login'];
+                    $dadosUsuario['idUsuario'] = $linha['Id_usuario'];
+                    $dadosUsuario['nome'] = $linha['Nome'];
+                    
+                    $usuario[$i] = $dadosUsuario;
+                    $usuario['indice'] = $i;
                 }
+            return $usuario;
         }
     }
 
@@ -132,6 +133,44 @@ class Usuario {
         }
         
         return $dados;
+    }
+    
+    function consultarID($idUsuario)
+    {
+        
+        $Obj_Conexao = new CONEXAO();
+
+        $pega_dados = $Obj_Conexao->RodaQuery("select * from Usuario where Id_usuario='$idUsuario'");
+
+        $retorno = mysql_num_rows($pega_dados);
+        
+        $dadosUsuario = array(); 
+        $usuario = array();
+
+        if($retorno == 0 )
+
+        {
+           return  $usuario;
+        }
+
+        else
+
+        {
+              for ($i = 1; $i <= $retorno; $i++)
+
+                {
+                    $linha = mysql_fetch_array($pega_dados);
+     
+                    $dadosUsuario['tipo'] = $linha['Tipo'];
+                    $dadosUsuario['login'] = $linha['Login'];
+                    $dadosUsuario['idUsuario'] = $linha['Id_usuario'];
+                    $dadosUsuario['nome'] = $linha['Nome'];
+                    
+                    $usuario[$i] = $dadosUsuario;
+                    $usuario['indice'] = $i;
+                }
+            return $usuario;
+        }
     }
 
 }

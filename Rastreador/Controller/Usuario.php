@@ -10,7 +10,14 @@ class ControllerUsuario
         $criptografia = md5($senha);
         
         $DAOUsuario = new Usuario();
-        $DAOUsuario->cadastrar($criptografia, $tipo, $login, $nome);
+        
+        return $DAOUsuario->cadastrar($criptografia, $tipo, $login, $nome);
+     }
+     
+     function listar()
+     {
+        $DAOUsuario = new Usuario();
+        return $DAOUsuario->listar();
      }
 
      function login($senha, $tipo, $login) 
@@ -29,17 +36,32 @@ class ControllerUsuario
             $_SESSION['id']   = $dados['id'];
             $_SESSION['nome'] = $dados['nome'];
             $_SESSION['tipo'] = $dados['tipo'];
-
-            // header("Location: /View/interno.php");  
+ 
             return 1;
              
         }else{
             
             return 0;
-            
-           // header("Location: /index.php"); 
-           
+      
         }
+     }
+     
+     function consultarID($idUsuario)
+     {
+        $DAOUsuario = new Usuario();
+        return $DAOUsuario->consultarID($idUsuario);
+     }
+     
+     function alterar($tipo,$nome,$login,$idUsuario)
+     {
+        $DAOUsuario = new Usuario();
+        return $DAOUsuario->alterar($tipo,$nome,$login,$idUsuario);
+     }
+     
+     function excluir($idUsuario)
+     {
+        $DAOUsuario = new Usuario();
+        return $DAOUsuario->excluir($idUsuario);
      }
      
      /**

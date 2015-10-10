@@ -3,8 +3,9 @@
 include '../Controller/Usuario.php';
 ini_set('display_errors', '1');
 
-    $acao = $_POST['acao'];
-   
+/* @var $_POST type */
+$acao = $_POST['acao'];
+
     switch ($acao){
         case "cadastrar":
             $senha = $_POST['senha'];
@@ -20,6 +21,30 @@ ini_set('display_errors', '1');
             $login = $_POST['login'];
             ActionUsuario::login($senha, $tipo, $login);
             break;
+        case "listar":
+            
+            ActionUsuario::listar();
+            break;
+        
+         case "excluir":
+            
+            $idUsuario = $_POST['idUsuario'];
+            ActionUsuario::excluir($idUsuario);
+            break;
+        case "consultarID":
+            
+            $idUsuario = $_POST['idUsuario'];
+            ActionUsuario::consultarID($idUsuario);
+            break;
+        
+         case "alterar":
+            
+            $nome      = $_POST['nome'];
+            $login     = $_POST['login'];
+            $tipo      = $_POST['tipo'];
+            $idUsuario = $_POST['idUsuario'];
+            ActionUsuario::alterar($tipo,$nome,$login,$idUsuario);
+            break;
     }
 
 
@@ -28,9 +53,15 @@ ini_set('display_errors', '1');
   
      static function cadastrar($senha,$tipo,$login,$nome)
      {
-        
+         
         $ControllerUsuario = new ControllerUsuario();
-        $ControllerUsuario->cadastrar($senha, $tipo, $login, $nome);
+        
+        $json = array();
+        
+        $json['sucesso'] = $ControllerUsuario->cadastrar($senha, $tipo, $login, $nome);
+        
+        echo json_encode($json);   
+        
      }
     
      static function login($senha,$tipo,$login)
@@ -42,5 +73,43 @@ ini_set('display_errors', '1');
         $json['sucesso'] = $ControllerUsuario->login($senha, $tipo, $login);
         
         echo json_encode($json);
+     }
+     
+     static function listar()
+     {
+       
+        $ControllerUsuario = new ControllerUsuario();
+         
+        echo json_encode($ControllerUsuario->listar());
+        
+     }
+     
+     static function consultarID($idUsuario)
+     {
+        $ControllerUsuario = new ControllerUsuario();
+        echo json_encode($ControllerUsuario->consultarID($idUsuario));
+     }
+     
+     static function alterar($tipo,$nome,$login,$idUsuario)
+     {
+        $ControllerUsuario = new ControllerUsuario();
+        
+        $json = array();
+        
+        $json['sucesso'] = $ControllerUsuario->alterar($tipo,$nome,$login,$idUsuario);
+        
+        echo json_encode($json);
+     }
+     
+     static function excluir($idUsuario)
+     {
+        $ControllerUsuario = new ControllerUsuario(); 
+        
+        $json = array();
+        
+        $json['sucesso'] = $ControllerUsuario->excluir($idUsuario);
+        
+        echo json_encode($json);
+        
      }
 }

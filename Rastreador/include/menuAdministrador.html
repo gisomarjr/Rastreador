@@ -30,16 +30,17 @@
         </div>
         <div  align="center" class="col-md-9 well admin-content" id="usuario">
             
-             <a href=""  class="btn btn-sq-lg btn-primary">
+            <a href="#" onclick="cadastrarUsuario();"  class="btn btn-sq-lg btn-primary">
                 <i class="fa fa-user fa-5x"></i><br/>
                  Cadastrar <br>Usuário
                   </a>
             
-                <a href="#" class="btn btn-sq-lg btn-success">
+            <a href="#" onclick="consultarUsuario();" class="btn btn-sq-lg btn-success">
                   <i class="fa fa-user fa-5x"></i><br/>
                   Consultar <br>Usuário
                 </a>
-            
+            <div id="cadastrarUsuario"></div>
+            <div id="consultarUsuario"></div>
         </div>
         <div class="col-md-9 well admin-content" id="vendas">
             Vendas
@@ -60,6 +61,16 @@
     function consultarCliente(){
         $("#cadastrarCliente").html("");
         $("#consultarCliente").load("../View/Cliente/consultarCliente.php");
+    }
+    
+    function cadastrarUsuario(){
+        $("#consultarUsuario").html("");
+        $("#cadastrarUsuario").load("../View/Usuario/cadastrarUsuario.php");
+    }
+    
+    function consultarUsuario(){ 
+        $("#cadastrarUsuario").html("");
+        $("#consultarUsuario").load("../View/Usuario/consultarUsuario.php");
     }
     
     $(document).ready(function()
