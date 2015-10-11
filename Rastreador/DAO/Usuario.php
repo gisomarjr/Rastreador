@@ -43,7 +43,7 @@ class Usuario {
         
         $Obj_Conexao = new CONEXAO();
         
-        $resultado = $Obj_Conexao->RodaQuery("");
+        $resultado = $Obj_Conexao->RodaQuery("UPDATE `Usuario` SET `Tipo`='$tipo', `Login`='$login', `Nome`='$nome' WHERE `Id_usuario`='$idUsuario';");
 
         return $resultado;
     }
@@ -57,7 +57,7 @@ class Usuario {
         ini_set('display_errors', '1');
         
         $Obj_Conexao = new CONEXAO();
-        
+       
         $resultado = $Obj_Conexao->RodaQuery("DELETE FROM `Usuario` WHERE `Id_usuario`='$id';");
 
         return $resultado;

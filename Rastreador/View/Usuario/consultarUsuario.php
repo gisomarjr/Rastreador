@@ -78,7 +78,6 @@ $("#mytable #checkall").click(function () {
     });
 </script>
 <script type="text/javascript">
-	
 		function consultarID(idUsuario,tipo){
 			jQuery.ajax({
 				type: "POST",
@@ -91,23 +90,25 @@ $("#mytable #checkall").click(function () {
                                    if(tipo === "editar"){ 
                                     for(var i = 1; i <= data.indice; i++)
                                     {
-
+                                        //limpa
+                                        $('#valorTipoUsuario option[value="' + data[i].tipo + '"]').attr("");
+                                         $('#idUsuarioEditar').val(data[i].idUsuario);
                                         $('#valorNomeUsuario').val(data[i].nome);
                                         $('#valorLoginUsuario').val(data[i].login);
-                                        $('#valorTipoCliente').val(retornarTipoUsuario(data[i].tipo));
-                                        
+                                        $('#valorTipoUsuario option[value="' + data[i].tipo + '"]').attr({ selected : "selected" });
+                                         
                                     }
                                 }
                                     else
                                     {
                                         for(var i = 1; i <= data.indice; i++)
                                         {
-                                            $('#ExcluirNomeCliente').html("");
-                                            $('#ExcluirCpfCliente').html("");
-                                            $('#idClienteEditar').html("");
-                                            $('#ExcluirNomeCliente').append(data[i].nome);
-                                            $('#ExcluirCpfCliente').append(data[i].cpf);
-                                            $('#idClienteEditar').val(data[i].idCliente);
+                                            $('#ExcluirNomeUsuario').html("");
+                                            $('#ExcluirTipoUsuario').html("");
+                                            $('#idUsuarioEditar').html("");
+                                            $('#ExcluirNomeUsuario').append(data[i].nome);
+                                            $('#ExcluirTipoUsuario').append(retornarTipoUsuario(data[i].tipo));
+                                            $('#idUsuarioEditar').val(data[i].idUsuario);
                                         }
                                     }
                                 }
@@ -130,21 +131,20 @@ $("#mytable #checkall").click(function () {
 		
                 function editar(){
                                
-                        var idCliente = $('#idClienteEditar').val();
-                        var endereco  = $('#valorEnderecoCliente').val();
-                        var rg        = $('#valorRgCliente').val();
-                        var cpf       = $('#valorCpfCliente').val();
-                        var nome      = $('#valorNomeCliente').val();
+                        var idUsuario = $('#idUsuarioEditar').val();
+                        var nome      = $('#valorNomeUsuario').val();
+                        var login     = $('#valorLoginUsuario').val();
+                        var tipo      = $('#valorTipoUsuario').val();
+                        
                         
 			jQuery.ajax({
 				type: "POST",
-				url: "../../Action/Cliente.php",
+				url: "../../Action/Usuario.php",
                                 dataType : "json",
 				data: {acao: "alterar",
-                                       idCliente: idCliente,
-                                       cpf: cpf,
-                                       endereco: endereco,
-                                       rg: rg,
+                                       idUsuario: idUsuario,
+                                       login: login,
+                                       tipo: tipo,
                                        nome: nome},
                                     
 				success: function( data )
@@ -152,13 +152,13 @@ $("#mytable #checkall").click(function () {
 				{
                                   
                                    if(data.sucesso){
-                                       
+                                       $("#msgErro").html("");
                                        $("#msgSucesso").html("");
                                                 $("#msgSucesso").append("<div  class='container'>\n\
                                                                 <div  class='row'>\n\
                                                   <div  class='col-md-6 col-md-offset-3 '>\n\
                                                   <div class='alert alert-success'>\n\
-                                                  <span class='glyphicon glyphicon-ok'></span> <strong>Editar Cliente</strong><hr class='message-inner-separator'><p>Cliente editado com Sucesso!</p>\n\
+                                                  <span class='glyphicon glyphicon-ok'></span> <strong>Editar Usuário</strong><hr class='message-inner-separator'><p>Usuário alterado com Sucesso!</p>\n\
                                                                   </div>\n\
                                                                   </div>\n\
                                                                   </div>\n\
@@ -168,11 +168,13 @@ $("#mytable #checkall").click(function () {
                                        
                                    }else{
                                        $("#msgErro").html("");
+                                       $("#msgSucesso").html("");
+                                       
                                        $("#msgErro").append("<div  class='container'>\n\
                                                                 <div  class='row'>\n\
                                                   <div  class='col-md-4 col-md-offset-4'>\n\
                                                   <div class='alert alert-danger'>\n\
-                                                  <span class='glyphicon glyphicon-hand-right'></span> <strong>Erro :(</strong><hr class='message-inner-separator'><p>Não foi possível editar um cliente!</p>\n\
+                                                  <span class='glyphicon glyphicon-hand-right'></span> <strong>Erro :(</strong><hr class='message-inner-separator'><p>Não foi possível editar o usuário!</p>\n\
                                                                   </div>\n\
                                                                   </div>\n\
                                                                   </div>\n\
@@ -193,14 +195,14 @@ $("#mytable #checkall").click(function () {
 		
                 function excluir(){
                                
-                        var idCliente = $('#idClienteEditar').val();
+                        var idUsuario = $('#idUsuarioEditar').val();
                         
 			jQuery.ajax({
 				type: "POST",
-				url: "../../Action/Cliente.php",
+				url: "../../Action/Usuario.php",
                                 dataType : "json",
 				data: {acao: "excluir",
-                                       idCliente: idCliente,
+                                       idUsuario: idUsuario,
                                       },
                                     
 				success: function( data )
@@ -208,13 +210,13 @@ $("#mytable #checkall").click(function () {
 				{
                                   
                                    if(data.sucesso){
-                                       
+                                       $("#msgErro").html("");
                                        $("#msgSucesso").html("");
                                                 $("#msgSucesso").append("<div  class='container'>\n\
                                                                 <div  class='row'>\n\
                                                   <div  class='col-md-6 col-md-offset-3 '>\n\
                                                   <div class='alert alert-success'>\n\
-                                                  <span class='glyphicon glyphicon-ok'></span> <strong>Excluir Cliente</strong><hr class='message-inner-separator'><p>Cliente excluído com Sucesso!</p>\n\
+                                                  <span class='glyphicon glyphicon-ok'></span> <strong>Excluir Usuário</strong><hr class='message-inner-separator'><p>Usuário excluído com Sucesso!</p>\n\
                                                                   </div>\n\
                                                                   </div>\n\
                                                                   </div>\n\
@@ -224,11 +226,12 @@ $("#mytable #checkall").click(function () {
                                        
                                    }else{
                                        $("#msgErro").html("");
+                                       $("#msgSucesso").html("");
                                        $("#msgErro").append("<div  class='container'>\n\
                                                                 <div  class='row'>\n\
                                                   <div  class='col-md-4 col-md-offset-4'>\n\
                                                   <div class='alert alert-danger'>\n\
-                                                  <span class='glyphicon glyphicon-hand-right'></span> <strong>Erro :(</strong><hr class='message-inner-separator'><p>Não foi possível excluir o cliente!</p>\n\
+                                                  <span class='glyphicon glyphicon-hand-right'></span> <strong>Erro :(</strong><hr class='message-inner-separator'><p>Não foi possível excluir o usuário!</p>\n\
                                                                   </div>\n\
                                                                   </div>\n\
                                                                   </div>\n\
@@ -331,7 +334,7 @@ $("#mytable #checkall").click(function () {
       </div>
           <div class="modal-footer ">
           <input type="hidden" name="acao" value="editar">
-          <input type="hidden" id="idClienteEditar">
+          <input type="hidden" id="idUsuarioEditar">
           <button type="button" data-dismiss="modal" onclick="editar();" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Atualizar</button>
       </div>
         </div>
@@ -347,13 +350,13 @@ $("#mytable #checkall").click(function () {
     <div class="modal-content">
           <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">Deletar o Cliente</h4>
+        <h4 class="modal-title custom_align" id="Heading">Deletar o Usuário</h4>
       </div>
           <div class="modal-body">
        
        <div class="alert alert-danger">
            <span class="glyphicon glyphicon-warning-sign"></span> 
-           Você deseja excluir o cliente: <b id="ExcluirNomeCliente" ></b> vinculado ao CPF: <b id="ExcluirCpfCliente"></b> ?
+           Você deseja excluir o usuário: <b id="ExcluirNomeUsuario" ></b> do Tipo: <b id="ExcluirTipoUsuario"></b> ?
        </div>
        
       </div>
